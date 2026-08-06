@@ -1,3 +1,8 @@
+"""
+models.py
+
+Baseline, Logistic Regression, Poisson goals model, and Random Forest.
+"""
 
 import numpy as np
 import pandas as pd
@@ -15,55 +20,41 @@ FEATURE_COLUMNS = [
     "day_of_week",
 ]
 
-OUTCOME_ORDER = ["A", "D", "H"]  # away, draw, home -- fixed column order for predict_proba
+OUTCOME_ORDER = ["A", "D", "H"]
 
 
 def prepare_features(matches: pd.DataFrame) -> pd.DataFrame:
-
     df = matches.copy()
-
     form_cols = ["home_form_ppg", "away_form_ppg", "home_form_gf",
                  "away_form_gf", "home_form_ga", "away_form_ga"]
     for col in form_cols:
         df[col] = df[col].fillna(df[col].mean())
-
     for col in ["home_rest_days", "away_rest_days"]:
         df[col] = df[col].fillna(df[col].median())
-
-    # No head-to-head history yet -> assume a neutral 50/50 rather than 0,
-    # which would look like "home team always loses head-to-heads."
     df["h2h_home_win_rate"] = df["h2h_home_win_rate"].fillna(0.5)
-
     return df
 
 
 def get_X_y(matches: pd.DataFrame):
-
     X = matches[FEATURE_COLUMNS]
     y = matches["result"]
     return X, y
 
 
-
-# 1. Baseline
-
 class BaselineModel:
 
     def __init__(self):
-        self.class_probs = None
+        self.class_priors = None
 
     def fit(self, X, y):
-        counts = y.value_counts(normalize=True)
-        self.class_probs = np.array([counts.get(cls, 0.0) for cls in OUTCOME_ORDER])
+        counts = pd.Series(y).value_counts(normalize=True)
+        self.class_priors = np.array([counts.get(c, 0.0) for c in OUTCOME_ORDER])
         return self
 
     def predict_proba(self, X):
         n = len(X)
-        return np.tile(self.class_probs, (n, 1))
+        return np.tile(self.class_priors, (n, 1))
 
-
-
-# 2. Logistic Regression
 
 class LogisticModel:
     def __init__(self):
@@ -78,16 +69,10 @@ class LogisticModel:
     def predict_proba(self, X):
         X_scaled = self.scaler.transform(X)
         raw_probs = self.clf.predict_proba(X_scaled)
-        # Reorder columns to our fixed [A, D, H] convention regardless of
-        # the order sklearn learned classes in.
         return _reorder_columns(raw_probs, self.clf.classes_)
 
 
-
-# 3. Poisson goals model
-
 class PoissonGoalsModel:
-
     def __init__(self, max_goals: int = 8):
         self.max_goals = max_goals
         self.scaler = StandardScaler()
@@ -101,7 +86,6 @@ class PoissonGoalsModel:
         return self
 
     def _score_distribution(self, lam_home: float, lam_away: float) -> np.ndarray:
-
         from scipy.stats import poisson
         home_probs = poisson.pmf(np.arange(self.max_goals + 1), lam_home)
         away_probs = poisson.pmf(np.arange(self.max_goals + 1), lam_away)
@@ -116,22 +100,18 @@ class PoissonGoalsModel:
         probs = np.zeros((n, 3))
         for i in range(n):
             grid = self._score_distribution(lam_home[i], lam_away[i])
-            away_win = np.triu(grid, k=1).sum()      # away goals (col) > home goals (row)
-            draw = np.trace(grid)                     # home goals == away goals
-            home_win = np.tril(grid, k=-1).sum()      # home goals (row) > away goals (col)
+            away_win = np.tril(grid, k=-1).sum()
+            draw = np.trace(grid)
+            home_win = np.triu(grid, k=1).sum()
             probs[i] = [away_win, draw, home_win]
 
         probs = probs / probs.sum(axis=1, keepdims=True)
         return probs
 
     def predict_expected_goals(self, X):
-
         X_scaled = self.scaler.transform(X)
         return self.home_model.predict(X_scaled), self.away_model.predict(X_scaled)
 
-
-
-# 4. Random Forest
 
 class RandomForestModel:
     def __init__(self, n_estimators: int = 300, max_depth: int = 8, random_state: int = 42):
@@ -152,14 +132,8 @@ class RandomForestModel:
         return pd.Series(self.clf.feature_importances_, index=feature_names).sort_values(ascending=False)
 
 
-
-# helpers
-
 def _reorder_columns(probs: np.ndarray, classes: np.ndarray) -> np.ndarray:
-
     out = np.zeros_like(probs)
     for i, cls in enumerate(classes):
         out[:, OUTCOME_ORDER.index(cls)] = probs[:, i]
     return out
-
-
