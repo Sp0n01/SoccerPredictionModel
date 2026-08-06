@@ -1,0 +1,46 @@
+[
+  {
+    "feature": "elo_diff",
+    "importance": 0.3309
+  },
+  {
+    "feature": "away_form_gf",
+    "importance": 0.0845
+  },
+  {
+    "feature": "h2h_home_win_rate",
+    "importance": 0.0843
+  },
+  {
+    "feature": "home_form_gf",
+    "importance": 0.0828
+  },
+  {
+    "feature": "home_form_ppg",
+    "importance": 0.0708
+  },
+  {
+    "feature": "away_form_ga",
+    "importance": 0.0664
+  },
+  {
+    "feature": "away_form_ppg",
+    "importance": 0.0661
+  },
+  {
+    "feature": "away_rest_days",
+    "importance": 0.0612
+  },
+  {
+    "feature": "home_rest_days",
+    "importance": 0.06
+  },
+  {
+    "feature": "home_form_ga",
+    "importance": 0.0582
+  },
+  {
+    "feature": "day_of_week",
+    "importance": 0.0349
+  }
+]

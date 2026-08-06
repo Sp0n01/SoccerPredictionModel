@@ -1,0 +1,10 @@
+{
+  "num_matches": 2280,
+  "date_range": [
+    "2020-09-12",
+    "2026-05-24"
+  ],
+  "num_teams": 28,
+  "train_size": 1824,
+  "test_size": 456
+}

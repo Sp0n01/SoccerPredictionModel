@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Baseline (home win)",
+    "accuracy": 0.4254,
+    "log_loss": 1.0839
+  },
+  {
+    "name": "Logistic Regression",
+    "accuracy": 0.4846,
+    "log_loss": 1.0352
+  },
+  {
+    "name": "Poisson (goals)",
+    "accuracy": 0.2412,
+    "log_loss": 1.2556
+  },
+  {
+    "name": "Random Forest",
+    "accuracy": 0.4781,
+    "log_loss": 1.0328
+  },
+  {
+    "name": "Bookmaker odds",
+    "accuracy": 0.5066,
+    "log_loss": 1.0091
+  }
+]
