@@ -98,6 +98,45 @@
   }
   footer a { color: var(--accent); text-decoration: none; }
   .loading { color: var(--muted); font-size: 0.9rem; }
+
+  select#teamSelect {
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    min-width: 220px;
+  }
+  .team-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .stat-card .label { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .stat-card .value { font-size: 1.4rem; font-weight: 700; }
+  .form-strip { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
+  .form-badge {
+    width: 30px; height: 30px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; font-weight: 700;
+    color: #0f1420;
+  }
+  .form-badge.W { background: var(--accent2); }
+  .form-badge.D { background: var(--accent3); }
+  .form-badge.L { background: #e05a7a; }
+  .recent-matches { font-size: 0.85rem; color: var(--muted); }
+  .recent-matches div { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .recent-matches div:last-child { border-bottom: none; }
 </style>
 </head>
 <body>
@@ -166,6 +205,25 @@
     <p class="lede">The top teams by final Elo rating, tracked match by match across the dataset.</p>
     <div class="panel">
       <div class="chart-box tall"><canvas id="eloChart"></canvas></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">05</span> Team explorer</h2>
+    <p class="lede">Pick a team to see their current Elo rank, recent form, and rating trajectory highlighted against the league.</p>
+    <div class="panel">
+      <select id="teamSelect"></select>
+
+      <div class="team-stats">
+        <div class="stat-card"><div class="label">Elo Rank</div><div class="value" id="stat-rank">—</div></div>
+        <div class="stat-card"><div class="label">Elo Rating</div><div class="value" id="stat-elo">—</div></div>
+        <div class="stat-card"><div class="label">Matches</div><div class="value" id="stat-matches">—</div></div>
+      </div>
+
+      <div class="form-strip" id="form-strip"></div>
+      <div class="recent-matches" id="recent-matches"></div>
+
+      <div class="chart-box tall" style="margin-top:24px;"><canvas id="teamEloChart"></canvas></div>
     </div>
   </section>
 
@@ -283,13 +341,99 @@ function renderEloChart(eloHistory) {
   });
 }
 
+let teamEloChartInstance = null;
+
+function renderTeamExplorer(teamProfiles, eloHistoryAll, selectedTeam) {
+  const profile = teamProfiles[selectedTeam];
+
+  document.getElementById('stat-rank').textContent = `#${profile.rank}`;
+  document.getElementById('stat-elo').textContent = profile.elo.toFixed(0);
+  document.getElementById('stat-matches').textContent = profile.matches_played;
+
+  document.getElementById('form-strip').innerHTML = profile.recent_form
+    .slice().reverse()
+    .map(m => `<div class="form-badge ${m.result}" title="${m.result} vs ${m.opponent} (${m.score})">${m.result}</div>`)
+    .join('');
+
+  document.getElementById('recent-matches').innerHTML = profile.recent_form
+    .map(m => `<div>${m.date} — ${m.venue === 'H' ? 'vs' : '@'} ${m.opponent} — <strong>${m.score}</strong> (${m.result})</div>`)
+    .join('');
+
+  const allTeams = Object.keys(eloHistoryAll.series);
+  const leagueAvg = eloHistoryAll.dates.map((_, i) => {
+    const vals = allTeams.map(t => eloHistoryAll.series[t][i]).filter(v => v !== null);
+    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+  });
+
+  if (teamEloChartInstance) teamEloChartInstance.destroy();
+  teamEloChartInstance = new Chart(document.getElementById('teamEloChart'), {
+    type: 'line',
+    data: {
+      labels: eloHistoryAll.dates,
+      datasets: [
+        {
+          label: 'League average',
+          data: leagueAvg,
+          borderColor: COLORS.muted,
+          borderDash: [4, 4],
+          borderWidth: 1.5,
+          pointRadius: 0,
+          spanGaps: true,
+        },
+        {
+          label: selectedTeam,
+          data: eloHistoryAll.series[selectedTeam],
+          borderColor: COLORS.accent,
+          backgroundColor: 'transparent',
+          borderWidth: 2.5,
+          pointRadius: 0,
+          spanGaps: true,
+        },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      scales: {
+        x: {
+          grid: { color: COLORS.border },
+          ticks: {
+            maxTicksLimit: 10,
+            callback: function(value) {
+              const d = this.getLabelForValue(value);
+              const parts = d.split('-');
+              const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+              return `${months[parseInt(parts[1],10)-1]} ${parts[0]}`;
+            }
+          }
+        },
+        y: { grid: { color: COLORS.border } }
+      },
+      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
+    }
+  });
+}
+
+function setupTeamSelector(teamProfiles, eloHistoryAll) {
+  const select = document.getElementById('teamSelect');
+  const teamsByRank = Object.entries(teamProfiles).sort((a, b) => a[1].rank - b[1].rank);
+
+  select.innerHTML = teamsByRank
+    .map(([team, p]) => `<option value="${team}">#${p.rank} ${team}</option>`)
+    .join('');
+
+  select.addEventListener('change', () => renderTeamExplorer(teamProfiles, eloHistoryAll, select.value));
+  renderTeamExplorer(teamProfiles, eloHistoryAll, teamsByRank[0][0]);
+}
+
 async function init() {
   try {
-    const [results, features, eloHistory, summary] = await Promise.all([
+    const [results, features, eloHistory, summary, teamProfiles, eloHistoryAll] = await Promise.all([
       loadJSON('data/results.json'),
       loadJSON('data/feature_importance.json'),
       loadJSON('data/elo_history.json'),
       loadJSON('data/summary.json'),
+      loadJSON('data/team_profiles.json'),
+      loadJSON('data/elo_history_all.json'),
     ]);
 
     document.getElementById('badge-matches').textContent = `${summary.num_matches.toLocaleString()} matches`;
@@ -300,6 +444,7 @@ async function init() {
     renderResultsChart(results);
     renderFeatureChart(features);
     renderEloChart(eloHistory);
+    setupTeamSelector(teamProfiles, eloHistoryAll);
   } catch (err) {
     document.querySelector('.wrap').insertAdjacentHTML('afterbegin',
       `<div class="panel" style="border-color:#e05a7a;margin-bottom:24px;">

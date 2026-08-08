@@ -66,7 +66,7 @@ def compute_model_results(train, test):
     return results, feature_importance
 
 
-def compute_elo_history(matches, top_n_teams: int = 8):
+def compute_elo_history(matches, top_n_teams: int = None):
     """
     Re-walks the matches chronologically, recording the POST-match rating
     at every step for every team. Then aligns all teams onto a single
@@ -74,6 +74,9 @@ def compute_elo_history(matches, top_n_teams: int = 8):
     between its own matches), so the frontend can plot them on a plain
     category axis -- no JS date-time adapter dependency required, which
     is a common source of silent rendering failures in Chart.js.
+
+    top_n_teams=None returns every team (needed so the team-picker dropdown
+    can show any team's history, not just the top few).
     """
     elo = EloRatingSystem(EloConfig())
     per_team_series = {}  # team -> {date_str: rating}
@@ -87,14 +90,15 @@ def compute_elo_history(matches, top_n_teams: int = 8):
         per_team_series.setdefault(row.away_team, {})[date_str] = round(elo.get_rating(row.away_team), 1)
 
     final_ratings = {team: list(series.values())[-1] for team, series in per_team_series.items()}
-    top_teams = sorted(final_ratings, key=final_ratings.get, reverse=True)[:top_n_teams]
+    ranked_teams = sorted(final_ratings, key=final_ratings.get, reverse=True)
+    teams_to_include = ranked_teams if top_n_teams is None else ranked_teams[:top_n_teams]
 
-    # Forward-fill each top team's rating across the shared date axis so
+    # Forward-fill each team's rating across the shared date axis so
     # every series has a value (or null before that team's first match)
     # at every date in all_dates -- makes the datasets directly alignable
     # in the chart without any date parsing on the JS side.
     aligned = {}
-    for team in top_teams:
+    for team in teams_to_include:
         series = per_team_series[team]
         values = []
         last = None
@@ -104,7 +108,55 @@ def compute_elo_history(matches, top_n_teams: int = 8):
             values.append(last)
         aligned[team] = values
 
-    return {"dates": all_dates, "series": aligned}
+    return {"dates": all_dates, "series": aligned}, final_ratings, ranked_teams
+
+
+def compute_team_profiles(matches, final_ratings, ranked_teams, n_recent: int = 5):
+    """
+    Per-team summary for the team-picker view: current Elo rank, rating,
+    and their last N results (opponent, venue, score, W/D/L) in reverse
+    chronological order (most recent first).
+    """
+    rank_by_team = {team: i + 1 for i, team in enumerate(ranked_teams)}
+    profiles = {}
+
+    for team in ranked_teams:
+        is_home = matches["home_team"] == team
+        is_away = matches["away_team"] == team
+        team_matches = matches[is_home | is_away].sort_values("date")
+
+        recent = []
+        for row in team_matches.tail(n_recent).iloc[::-1].itertuples(index=False):
+            if row.home_team == team:
+                opponent, venue = row.away_team, "H"
+                gf, ga = row.home_goals, row.away_goals
+            else:
+                opponent, venue = row.home_team, "A"
+                gf, ga = row.away_goals, row.home_goals
+
+            if gf > ga:
+                result = "W"
+            elif gf == ga:
+                result = "D"
+            else:
+                result = "L"
+
+            recent.append({
+                "date": row.date.strftime("%Y-%m-%d"),
+                "opponent": opponent,
+                "venue": venue,
+                "score": f"{gf}-{ga}",
+                "result": result,
+            })
+
+        profiles[team] = {
+            "rank": rank_by_team[team],
+            "elo": round(final_ratings[team], 1),
+            "matches_played": len(team_matches),
+            "recent_form": recent,
+        }
+
+    return profiles
 
 
 def main():
@@ -123,7 +175,18 @@ def main():
     results, feature_importance = compute_model_results(train, test)
 
     print("Computing Elo history for chart ...")
-    elo_history = compute_elo_history(matches)
+    elo_history_all, final_ratings, ranked_teams = compute_elo_history(matches, top_n_teams=None)
+
+    # Overview chart on the main page stays uncluttered (top 8 only).
+    # The team-picker dropdown uses elo_history_all, which has everyone.
+    overview_teams = ranked_teams[:8]
+    elo_history_overview = {
+        "dates": elo_history_all["dates"],
+        "series": {t: elo_history_all["series"][t] for t in overview_teams},
+    }
+
+    print("Computing team profiles ...")
+    team_profiles = compute_team_profiles(matches, final_ratings, ranked_teams)
 
     print("Writing JSON to docs/data/ ...")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -135,7 +198,13 @@ def main():
         json.dump(feature_importance, f, indent=2)
 
     with open(OUTPUT_DIR / "elo_history.json", "w") as f:
-        json.dump(elo_history, f, indent=2)
+        json.dump(elo_history_overview, f, indent=2)
+
+    with open(OUTPUT_DIR / "elo_history_all.json", "w") as f:
+        json.dump(elo_history_all, f, indent=2)
+
+    with open(OUTPUT_DIR / "team_profiles.json", "w") as f:
+        json.dump(team_profiles, f, indent=2)
 
     with open(OUTPUT_DIR / "summary.json", "w") as f:
         json.dump({
