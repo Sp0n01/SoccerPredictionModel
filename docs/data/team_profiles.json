@@ -1,0 +1,1178 @@
+{
+  "Arsenal": {
+    "rank": 1,
+    "elo": 1810.7,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Crystal Palace",
+        "venue": "A",
+        "score": "2-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-18",
+        "opponent": "Burnley",
+        "venue": "H",
+        "score": "1-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "West Ham",
+        "venue": "A",
+        "score": "1-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Fulham",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Newcastle",
+        "venue": "H",
+        "score": "1-0",
+        "result": "W"
+      }
+    ]
+  },
+  "Man City": {
+    "rank": 2,
+    "elo": 1784.0,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Aston Villa",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-19",
+        "opponent": "Bournemouth",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-13",
+        "opponent": "Crystal Palace",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Brentford",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-04",
+        "opponent": "Everton",
+        "venue": "A",
+        "score": "3-3",
+        "result": "D"
+      }
+    ]
+  },
+  "Man United": {
+    "rank": 3,
+    "elo": 1691.9,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Brighton",
+        "venue": "A",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Nott'm Forest",
+        "venue": "H",
+        "score": "3-2",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Sunderland",
+        "venue": "A",
+        "score": "0-0",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Liverpool",
+        "venue": "H",
+        "score": "3-2",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-27",
+        "opponent": "Brentford",
+        "venue": "H",
+        "score": "2-1",
+        "result": "W"
+      }
+    ]
+  },
+  "Liverpool": {
+    "rank": 4,
+    "elo": 1657.0,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Brentford",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-15",
+        "opponent": "Aston Villa",
+        "venue": "A",
+        "score": "2-4",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Chelsea",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Man United",
+        "venue": "A",
+        "score": "2-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Crystal Palace",
+        "venue": "H",
+        "score": "3-1",
+        "result": "W"
+      }
+    ]
+  },
+  "Bournemouth": {
+    "rank": 5,
+    "elo": 1650.6,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Nott'm Forest",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-19",
+        "opponent": "Man City",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Fulham",
+        "venue": "A",
+        "score": "1-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Crystal Palace",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-22",
+        "opponent": "Leeds",
+        "venue": "H",
+        "score": "2-2",
+        "result": "D"
+      }
+    ]
+  },
+  "Aston Villa": {
+    "rank": 6,
+    "elo": 1639.5,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Man City",
+        "venue": "A",
+        "score": "2-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-15",
+        "opponent": "Liverpool",
+        "venue": "H",
+        "score": "4-2",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Burnley",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Tottenham",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Fulham",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      }
+    ]
+  },
+  "Brighton": {
+    "rank": 7,
+    "elo": 1589.6,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Man United",
+        "venue": "H",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Leeds",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Wolves",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Newcastle",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-21",
+        "opponent": "Chelsea",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      }
+    ]
+  },
+  "Brentford": {
+    "rank": 8,
+    "elo": 1588.9,
+    "matches_played": 190,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Liverpool",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Crystal Palace",
+        "venue": "H",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Man City",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "West Ham",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-27",
+        "opponent": "Man United",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      }
+    ]
+  },
+  "Nott'm Forest": {
+    "rank": 9,
+    "elo": 1574.1,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Bournemouth",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Man United",
+        "venue": "A",
+        "score": "2-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Newcastle",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-04",
+        "opponent": "Chelsea",
+        "venue": "A",
+        "score": "3-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-24",
+        "opponent": "Sunderland",
+        "venue": "A",
+        "score": "5-0",
+        "result": "W"
+      }
+    ]
+  },
+  "Chelsea": {
+    "rank": 10,
+    "elo": 1567.5,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Sunderland",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-19",
+        "opponent": "Tottenham",
+        "venue": "H",
+        "score": "2-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Liverpool",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-04",
+        "opponent": "Nott'm Forest",
+        "venue": "H",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-21",
+        "opponent": "Brighton",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      }
+    ]
+  },
+  "Newcastle": {
+    "rank": 11,
+    "elo": 1565.9,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Fulham",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "West Ham",
+        "venue": "H",
+        "score": "3-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Nott'm Forest",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Brighton",
+        "venue": "H",
+        "score": "3-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Arsenal",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      }
+    ]
+  },
+  "Fulham": {
+    "rank": 12,
+    "elo": 1559.6,
+    "matches_played": 190,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Newcastle",
+        "venue": "H",
+        "score": "2-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Bournemouth",
+        "venue": "H",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Arsenal",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Aston Villa",
+        "venue": "H",
+        "score": "1-0",
+        "result": "W"
+      }
+    ]
+  },
+  "Sunderland": {
+    "rank": 13,
+    "elo": 1548.2,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Chelsea",
+        "venue": "H",
+        "score": "2-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Everton",
+        "venue": "A",
+        "score": "3-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Man United",
+        "venue": "H",
+        "score": "0-0",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-04-24",
+        "opponent": "Nott'm Forest",
+        "venue": "H",
+        "score": "0-5",
+        "result": "L"
+      }
+    ]
+  },
+  "Everton": {
+    "rank": 14,
+    "elo": 1539.9,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Tottenham",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Sunderland",
+        "venue": "H",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Crystal Palace",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-04",
+        "opponent": "Man City",
+        "venue": "H",
+        "score": "3-3",
+        "result": "D"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "West Ham",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      }
+    ]
+  },
+  "Crystal Palace": {
+    "rank": 15,
+    "elo": 1529.0,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Arsenal",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Brentford",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-13",
+        "opponent": "Man City",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Everton",
+        "venue": "H",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Bournemouth",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      }
+    ]
+  },
+  "Leeds": {
+    "rank": 16,
+    "elo": 1517.5,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "West Ham",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Brighton",
+        "venue": "H",
+        "score": "1-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-11",
+        "opponent": "Tottenham",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-01",
+        "opponent": "Burnley",
+        "venue": "H",
+        "score": "3-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-22",
+        "opponent": "Bournemouth",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      }
+    ]
+  },
+  "West Ham": {
+    "rank": 17,
+    "elo": 1502.6,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Leeds",
+        "venue": "H",
+        "score": "3-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Newcastle",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Arsenal",
+        "venue": "H",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Brentford",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Everton",
+        "venue": "H",
+        "score": "2-1",
+        "result": "W"
+      }
+    ]
+  },
+  "Tottenham": {
+    "rank": 18,
+    "elo": 1471.9,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Everton",
+        "venue": "H",
+        "score": "1-0",
+        "result": "W"
+      },
+      {
+        "date": "2026-05-19",
+        "opponent": "Chelsea",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-11",
+        "opponent": "Leeds",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-03",
+        "opponent": "Aston Villa",
+        "venue": "A",
+        "score": "2-1",
+        "result": "W"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "1-0",
+        "result": "W"
+      }
+    ]
+  },
+  "Wolves": {
+    "rank": 19,
+    "elo": 1382.2,
+    "matches_played": 228,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Burnley",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-17",
+        "opponent": "Fulham",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-09",
+        "opponent": "Brighton",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-02",
+        "opponent": "Sunderland",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-04-25",
+        "opponent": "Tottenham",
+        "venue": "H",
+        "score": "0-1",
+        "result": "L"
+      }
+    ]
+  },
+  "Luton": {
+    "rank": 20,
+    "elo": 1366.8,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2024-05-19",
+        "opponent": "Fulham",
+        "venue": "H",
+        "score": "2-4",
+        "result": "L"
+      },
+      {
+        "date": "2024-05-11",
+        "opponent": "West Ham",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2024-05-03",
+        "opponent": "Everton",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2024-04-27",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2024-04-20",
+        "opponent": "Brentford",
+        "venue": "H",
+        "score": "1-5",
+        "result": "L"
+      }
+    ]
+  },
+  "West Brom": {
+    "rank": 21,
+    "elo": 1356.7,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2021-05-23",
+        "opponent": "Leeds",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2021-05-19",
+        "opponent": "West Ham",
+        "venue": "H",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2021-05-16",
+        "opponent": "Liverpool",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2021-05-09",
+        "opponent": "Arsenal",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2021-05-03",
+        "opponent": "Wolves",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      }
+    ]
+  },
+  "Ipswich": {
+    "rank": 22,
+    "elo": 1343.1,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2025-05-25",
+        "opponent": "West Ham",
+        "venue": "H",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-18",
+        "opponent": "Leicester",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-10",
+        "opponent": "Brentford",
+        "venue": "H",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-03",
+        "opponent": "Everton",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2025-04-26",
+        "opponent": "Newcastle",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      }
+    ]
+  },
+  "Leicester": {
+    "rank": 23,
+    "elo": 1339.7,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2025-05-25",
+        "opponent": "Bournemouth",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-18",
+        "opponent": "Ipswich",
+        "venue": "H",
+        "score": "2-0",
+        "result": "W"
+      },
+      {
+        "date": "2025-05-11",
+        "opponent": "Nott'm Forest",
+        "venue": "A",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2025-05-03",
+        "opponent": "Southampton",
+        "venue": "H",
+        "score": "2-0",
+        "result": "W"
+      },
+      {
+        "date": "2025-04-26",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      }
+    ]
+  },
+  "Burnley": {
+    "rank": 24,
+    "elo": 1325.6,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2026-05-24",
+        "opponent": "Wolves",
+        "venue": "H",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-18",
+        "opponent": "Arsenal",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2026-05-10",
+        "opponent": "Aston Villa",
+        "venue": "H",
+        "score": "2-2",
+        "result": "D"
+      },
+      {
+        "date": "2026-05-01",
+        "opponent": "Leeds",
+        "venue": "A",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2026-04-22",
+        "opponent": "Man City",
+        "venue": "H",
+        "score": "0-1",
+        "result": "L"
+      }
+    ]
+  },
+  "Norwich": {
+    "rank": 25,
+    "elo": 1314.0,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2022-05-22",
+        "opponent": "Tottenham",
+        "venue": "H",
+        "score": "0-5",
+        "result": "L"
+      },
+      {
+        "date": "2022-05-15",
+        "opponent": "Wolves",
+        "venue": "A",
+        "score": "1-1",
+        "result": "D"
+      },
+      {
+        "date": "2022-05-11",
+        "opponent": "Leicester",
+        "venue": "A",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2022-05-08",
+        "opponent": "West Ham",
+        "venue": "H",
+        "score": "0-4",
+        "result": "L"
+      },
+      {
+        "date": "2022-04-30",
+        "opponent": "Aston Villa",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      }
+    ]
+  },
+  "Watford": {
+    "rank": 26,
+    "elo": 1308.8,
+    "matches_played": 38,
+    "recent_form": [
+      {
+        "date": "2022-05-22",
+        "opponent": "Chelsea",
+        "venue": "A",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2022-05-15",
+        "opponent": "Leicester",
+        "venue": "H",
+        "score": "1-5",
+        "result": "L"
+      },
+      {
+        "date": "2022-05-11",
+        "opponent": "Everton",
+        "venue": "H",
+        "score": "0-0",
+        "result": "D"
+      },
+      {
+        "date": "2022-05-07",
+        "opponent": "Crystal Palace",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2022-04-30",
+        "opponent": "Burnley",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      }
+    ]
+  },
+  "Sheffield United": {
+    "rank": 27,
+    "elo": 1242.8,
+    "matches_played": 76,
+    "recent_form": [
+      {
+        "date": "2024-05-19",
+        "opponent": "Tottenham",
+        "venue": "H",
+        "score": "0-3",
+        "result": "L"
+      },
+      {
+        "date": "2024-05-11",
+        "opponent": "Everton",
+        "venue": "A",
+        "score": "0-1",
+        "result": "L"
+      },
+      {
+        "date": "2024-05-04",
+        "opponent": "Nott'm Forest",
+        "venue": "H",
+        "score": "1-3",
+        "result": "L"
+      },
+      {
+        "date": "2024-04-27",
+        "opponent": "Newcastle",
+        "venue": "A",
+        "score": "1-5",
+        "result": "L"
+      },
+      {
+        "date": "2024-04-24",
+        "opponent": "Man United",
+        "venue": "A",
+        "score": "2-4",
+        "result": "L"
+      }
+    ]
+  },
+  "Southampton": {
+    "rank": 28,
+    "elo": 1231.7,
+    "matches_played": 152,
+    "recent_form": [
+      {
+        "date": "2025-05-25",
+        "opponent": "Arsenal",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-18",
+        "opponent": "Everton",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      },
+      {
+        "date": "2025-05-10",
+        "opponent": "Man City",
+        "venue": "H",
+        "score": "0-0",
+        "result": "D"
+      },
+      {
+        "date": "2025-05-03",
+        "opponent": "Leicester",
+        "venue": "A",
+        "score": "0-2",
+        "result": "L"
+      },
+      {
+        "date": "2025-04-26",
+        "opponent": "Fulham",
+        "venue": "H",
+        "score": "1-2",
+        "result": "L"
+      }
+    ]
+  }
+}
