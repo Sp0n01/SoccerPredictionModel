@@ -66,6 +66,36 @@ def compute_model_results(train, test):
     return results, feature_importance
 
 
+def _season_label(date_str: str) -> str:
+    """
+    Premier League seasons run August -> May. Given a match date, returns
+    a label like '2021/22' for the season it falls in (games in
+    Jul-Dec belong to the season starting that year; games in Jan-Jun
+    belong to the season that started the previous year).
+    """
+    year, month = int(date_str[:4]), int(date_str[5:7])
+    start_year = year if month >= 7 else year - 1
+    return f"{start_year}/{str(start_year + 1)[-2:]}"
+
+
+def _season_boundaries(dates: list[str]) -> list[dict]:
+    """
+    Returns the index of the first match date in each season, paired with
+    that season's label -- e.g. [{"index": 0, "label": "2021/22"},
+    {"index": 380, "label": "2022/23"}, ...]. Used by the frontend to draw
+    x-axis ticks at season boundaries instead of arbitrary month ticks, so
+    it's easy to see where one season ends and the next begins.
+    """
+    boundaries = []
+    last_label = None
+    for i, d in enumerate(dates):
+        label = _season_label(d)
+        if label != last_label:
+            boundaries.append({"index": i, "label": label})
+            last_label = label
+    return boundaries
+
+
 def compute_elo_history(matches, top_n_teams: int = None):
     """
     Re-walks the matches chronologically, recording the POST-match rating
@@ -82,6 +112,7 @@ def compute_elo_history(matches, top_n_teams: int = None):
     per_team_series = {}  # team -> {date_str: rating}
 
     all_dates = sorted(matches["date"].dt.strftime("%Y-%m-%d").unique())
+    season_boundaries = _season_boundaries(all_dates)
 
     for row in matches.itertuples(index=False):
         elo.process_match(row.home_team, row.away_team, row.home_goals, row.away_goals)
@@ -108,7 +139,11 @@ def compute_elo_history(matches, top_n_teams: int = None):
             values.append(last)
         aligned[team] = values
 
-    return {"dates": all_dates, "series": aligned}, final_ratings, ranked_teams
+    return (
+        {"dates": all_dates, "series": aligned, "season_boundaries": season_boundaries},
+        final_ratings,
+        ranked_teams,
+    )
 
 
 def compute_team_profiles(matches, final_ratings, ranked_teams, n_recent: int = 5):
@@ -183,6 +218,7 @@ def main():
     elo_history_overview = {
         "dates": elo_history_all["dates"],
         "series": {t: elo_history_all["series"][t] for t in overview_teams},
+        "season_boundaries": elo_history_all["season_boundaries"],
     }
 
     print("Computing team profiles ...")

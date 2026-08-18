@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Results — PL Predictor</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <a class="brand" href="index.html">⚽ PL Predictor</a>
+    <div class="links">
+      <a href="index.html">About</a>
+      <a href="results.html" class="active">Results</a>
+      <a href="teams.html">Teams</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <h1>Model Results</h1>
+    <p class="subtitle">
+      Four modeling approaches, evaluated on a chronological (non-random) held-out
+      test set — the most recent 20% of matches by date — and benchmarked against
+      real bookmaker odds.
+    </p>
+  </header>
+
+  <section>
+    <h2><span class="step">01</span> Model comparison</h2>
+    <p class="lede">Accuracy and log loss on held-out matches.</p>
+    <div class="grid-2">
+      <div class="panel">
+        <div id="results-table"><p class="loading">Loading results…</p></div>
+      </div>
+      <div class="panel">
+        <div class="chart-box"><canvas id="resultsChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">02</span> What the model actually looks at</h2>
+    <p class="lede">Random Forest feature importances — how much each input contributed to its predictions.</p>
+    <div class="panel">
+      <div class="chart-box tall"><canvas id="featureChart"></canvas></div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Built with Python, pandas, and scikit-learn. Data from
+  <a href="https://www.football-data.co.uk/englandm.php" target="_blank">football-data.co.uk</a>.
+</footer>
+
+<script src="app.js"></script>
+<script>
+async function init() {
+  try {
+    const [results, features] = await Promise.all([
+      loadJSON('data/results.json'),
+      loadJSON('data/feature_importance.json'),
+    ]);
+    renderResultsTable(results);
+    renderResultsChart(results);
+    renderFeatureChart(features);
+  } catch (err) {
+    showLoadError('.wrap');
+    console.error(err);
+  }
+}
+init();
+</script>
+</body>
+</html>

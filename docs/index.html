@@ -4,146 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Premier League Match Predictor</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<style>
-  :root {
-    --bg: #0f1420;
-    --panel: #171d2b;
-    --border: #2a3244;
-    --text: #e6e9f0;
-    --muted: #9aa4b8;
-    --accent: #5b8def;
-    --accent2: #37b48c;
-    --accent3: #e8a13a;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.6;
-  }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 48px 24px 96px; }
-  header { margin-bottom: 48px; }
-  h1 {
-    font-size: 2.1rem;
-    margin: 0 0 8px;
-    letter-spacing: -0.02em;
-  }
-  .subtitle { color: var(--muted); font-size: 1.05rem; max-width: 640px; }
-  .badges { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
-  .badge {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    color: var(--muted);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-  }
-  section { margin-bottom: 56px; }
-  h2 {
-    font-size: 1.3rem;
-    margin: 0 0 6px;
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  h2 .step { color: var(--accent); font-size: 0.9rem; font-weight: 600; }
-  .lede { color: var(--muted); margin: 0 0 20px; max-width: 640px; }
-  .panel {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px;
-  }
-  table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
-  th, td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--border); }
-  th { color: var(--muted); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
-  tr.best td { color: var(--accent2); font-weight: 600; }
-  .chart-box { position: relative; height: 320px; margin-top: 8px; }
-  .chart-box.tall { height: 380px; }
-  .pipeline {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
-  }
-  .pipe-step {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 16px;
-  }
-  .pipe-step .n {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #0f1420;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-  .pipe-step h3 { margin: 0 0 4px; font-size: 0.95rem; }
-  .pipe-step p { margin: 0; color: var(--muted); font-size: 0.85rem; }
-  footer {
-    margin-top: 64px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.85rem;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  .loading { color: var(--muted); font-size: 0.9rem; }
-
-  select#teamSelect {
-    background: var(--bg);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    min-width: 220px;
-  }
-  .team-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .stat-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-  .stat-card .label { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
-  .stat-card .value { font-size: 1.4rem; font-weight: 700; }
-  .form-strip { display: flex; gap: 6px; margin-bottom: 20px; flex-wrap: wrap; }
-  .form-badge {
-    width: 30px; height: 30px;
-    border-radius: 7px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.8rem; font-weight: 700;
-    color: #0f1420;
-  }
-  .form-badge.W { background: var(--accent2); }
-  .form-badge.D { background: var(--accent3); }
-  .form-badge.L { background: #e05a7a; }
-  .recent-matches { font-size: 0.85rem; color: var(--muted); }
-  .recent-matches div { padding: 4px 0; border-bottom: 1px solid var(--border); }
-  .recent-matches div:last-child { border-bottom: none; }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <h1>⚽ Premier League Match Predictor</h1>
+<nav class="topnav">
+  <div class="inner">
+    <a class="brand" href="index.html">⚽ PL Predictor</a>
+    <div class="links">
+      <a href="index.html" class="active">About</a>
+      <a href="results.html">Results</a>
+      <a href="teams.html">Teams</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap narrow">
+
+  <header class="page-header">
+    <h1>Premier League Match Predictor</h1>
     <p class="subtitle">
       Predicting home win / draw / away win using Elo ratings, rolling team
       form, and head-to-head history — compared across four modeling
@@ -184,279 +63,42 @@
   </section>
 
   <section>
-    <h2><span class="step">02</span> Model comparison</h2>
-    <p class="lede">Accuracy and log loss on held-out matches, compared against a naive baseline and real bookmaker odds (de-vigged to remove the bookmaker's margin).</p>
-    <div class="panel">
-      <div id="results-table"><p class="loading">Loading results…</p></div>
-      <div class="chart-box"><canvas id="resultsChart"></canvas></div>
+    <h2><span class="step">02</span> Explore the project</h2>
+    <p class="lede">See the actual numbers and dig into individual teams.</p>
+    <div class="cta-row">
+      <a class="cta-card" href="results.html">
+        <div class="icon">📊</div>
+        <h3>Model Results</h3>
+        <p>Accuracy and log loss for all four models, benchmarked against bookmaker odds, plus feature importances.</p>
+      </a>
+      <a class="cta-card" href="teams.html">
+        <div class="icon">🏆</div>
+        <h3>Team Explorer</h3>
+        <p>Elo rating trajectories for every team — pick one to see their rank, recent form, and rating history.</p>
+      </a>
     </div>
   </section>
 
   <section>
-    <h2><span class="step">03</span> What the model actually looks at</h2>
-    <p class="lede">Random Forest feature importances — how much each input contributed to its predictions.</p>
-    <div class="panel">
-      <div class="chart-box tall"><canvas id="featureChart"></canvas></div>
-    </div>
+    <h2><span class="step">03</span> About this project</h2>
+    <p class="lede" style="margin-bottom:0;">
+      Built with Python, pandas, and scikit-learn. Data from
+      <a href="https://www.football-data.co.uk/englandm.php" target="_blank" style="color:var(--accent);">football-data.co.uk</a>.
+      All features are computed using only information available before kickoff — no leakage from future matches.
+      The model comparison uses a chronological (not random) train/test split, since match results for the same
+      teams are correlated over time and a random split would let information leak across nearby matches.
+    </p>
   </section>
-
-  <section>
-    <h2><span class="step">04</span> Elo ratings over time</h2>
-    <p class="lede">The top teams by final Elo rating, tracked match by match across the dataset.</p>
-    <div class="panel">
-      <div class="chart-box tall"><canvas id="eloChart"></canvas></div>
-    </div>
-  </section>
-
-  <section>
-    <h2><span class="step">05</span> Team explorer</h2>
-    <p class="lede">Pick a team to see their current Elo rank, recent form, and rating trajectory highlighted against the league.</p>
-    <div class="panel">
-      <select id="teamSelect"></select>
-
-      <div class="team-stats">
-        <div class="stat-card"><div class="label">Elo Rank</div><div class="value" id="stat-rank">—</div></div>
-        <div class="stat-card"><div class="label">Elo Rating</div><div class="value" id="stat-elo">—</div></div>
-        <div class="stat-card"><div class="label">Matches</div><div class="value" id="stat-matches">—</div></div>
-      </div>
-
-      <div class="form-strip" id="form-strip"></div>
-      <div class="recent-matches" id="recent-matches"></div>
-
-      <div class="chart-box tall" style="margin-top:24px;"><canvas id="teamEloChart"></canvas></div>
-    </div>
-  </section>
-
-  <footer>
-    Built with Python, pandas, and scikit-learn. Data from
-    <a href="https://www.football-data.co.uk/englandm.php" target="_blank">football-data.co.uk</a>.
-    Source on <a href="#" id="repo-link">GitHub</a>.
-  </footer>
 
 </div>
 
+<footer>
+  <a href="#" id="repo-link">View source on GitHub</a>
+</footer>
+
+<script src="app.js"></script>
 <script>
-const COLORS = { accent: '#5b8def', accent2: '#37b48c', accent3: '#e8a13a', muted: '#9aa4b8', border: '#2a3244' };
-Chart.defaults.color = COLORS.muted;
-Chart.defaults.borderColor = COLORS.border;
-Chart.defaults.font.family = "-apple-system, 'Segoe UI', Roboto, sans-serif";
-
-async function loadJSON(path) {
-  const res = await fetch(path);
-  if (!res.ok) throw new Error(`Failed to load ${path}`);
-  return res.json();
-}
-
-function renderResultsTable(results) {
-  const bestAcc = Math.max(...results.map(r => r.accuracy));
-  const rows = results.map(r => `
-    <tr class="${r.accuracy === bestAcc ? 'best' : ''}">
-      <td>${r.name}</td>
-      <td class="num">${(r.accuracy * 100).toFixed(1)}%</td>
-      <td class="num">${r.log_loss.toFixed(3)}</td>
-    </tr>`).join('');
-  document.getElementById('results-table').innerHTML = `
-    <table>
-      <thead><tr><th>Model</th><th class="num">Accuracy</th><th class="num">Log Loss</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table>`;
-}
-
-function renderResultsChart(results) {
-  new Chart(document.getElementById('resultsChart'), {
-    type: 'bar',
-    data: {
-      labels: results.map(r => r.name),
-      datasets: [
-        { label: 'Accuracy', data: results.map(r => r.accuracy), backgroundColor: COLORS.accent, yAxisID: 'y' },
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      scales: {
-        y: { beginAtZero: true, max: 1, ticks: { callback: v => (v*100)+'%' }, grid: { color: COLORS.border } },
-        x: { grid: { display: false } }
-      },
-      plugins: { legend: { display: false } }
-    }
-  });
-}
-
-function renderFeatureChart(features) {
-  new Chart(document.getElementById('featureChart'), {
-    type: 'bar',
-    data: {
-      labels: features.map(f => f.feature),
-      datasets: [{ data: features.map(f => f.importance), backgroundColor: COLORS.accent2 }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true, maintainAspectRatio: false,
-      scales: {
-        x: { beginAtZero: true, grid: { color: COLORS.border } },
-        y: { grid: { display: false } }
-      },
-      plugins: { legend: { display: false } }
-    }
-  });
-}
-
-function renderEloChart(eloHistory) {
-  const palette = [COLORS.accent, COLORS.accent2, COLORS.accent3, '#e05a7a', '#9b6bde', '#4dd0e1', '#f06292', '#aed581'];
-  const teams = Object.keys(eloHistory.series);
-  const datasets = teams.map((team, i) => ({
-    label: team,
-    data: eloHistory.series[team],
-    borderColor: palette[i % palette.length],
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    pointRadius: 0,
-    spanGaps: true,
-    tension: 0.15,
-  }));
-
-  new Chart(document.getElementById('eloChart'), {
-    type: 'line',
-    data: { labels: eloHistory.dates, datasets },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      scales: {
-        x: {
-          grid: { color: COLORS.border },
-          ticks: {
-            maxTicksLimit: 10,
-            callback: function(value, index) {
-              // labels are 'YYYY-MM-DD' strings; show 'Mon YYYY' for readability
-              const d = this.getLabelForValue(value);
-              const parts = d.split('-');
-              const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-              return `${months[parseInt(parts[1],10)-1]} ${parts[0]}`;
-            }
-          }
-        },
-        y: { grid: { color: COLORS.border } }
-      },
-      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
-    }
-  });
-}
-
-let teamEloChartInstance = null;
-
-function renderTeamExplorer(teamProfiles, eloHistoryAll, selectedTeam) {
-  const profile = teamProfiles[selectedTeam];
-
-  document.getElementById('stat-rank').textContent = `#${profile.rank}`;
-  document.getElementById('stat-elo').textContent = profile.elo.toFixed(0);
-  document.getElementById('stat-matches').textContent = profile.matches_played;
-
-  document.getElementById('form-strip').innerHTML = profile.recent_form
-    .slice().reverse()
-    .map(m => `<div class="form-badge ${m.result}" title="${m.result} vs ${m.opponent} (${m.score})">${m.result}</div>`)
-    .join('');
-
-  document.getElementById('recent-matches').innerHTML = profile.recent_form
-    .map(m => `<div>${m.date} — ${m.venue === 'H' ? 'vs' : '@'} ${m.opponent} — <strong>${m.score}</strong> (${m.result})</div>`)
-    .join('');
-
-  const allTeams = Object.keys(eloHistoryAll.series);
-  const leagueAvg = eloHistoryAll.dates.map((_, i) => {
-    const vals = allTeams.map(t => eloHistoryAll.series[t][i]).filter(v => v !== null);
-    return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
-  });
-
-  if (teamEloChartInstance) teamEloChartInstance.destroy();
-  teamEloChartInstance = new Chart(document.getElementById('teamEloChart'), {
-    type: 'line',
-    data: {
-      labels: eloHistoryAll.dates,
-      datasets: [
-        {
-          label: 'League average',
-          data: leagueAvg,
-          borderColor: COLORS.muted,
-          borderDash: [4, 4],
-          borderWidth: 1.5,
-          pointRadius: 0,
-          spanGaps: true,
-        },
-        {
-          label: selectedTeam,
-          data: eloHistoryAll.series[selectedTeam],
-          borderColor: COLORS.accent,
-          backgroundColor: 'transparent',
-          borderWidth: 2.5,
-          pointRadius: 0,
-          spanGaps: true,
-        },
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      scales: {
-        x: {
-          grid: { color: COLORS.border },
-          ticks: {
-            maxTicksLimit: 10,
-            callback: function(value) {
-              const d = this.getLabelForValue(value);
-              const parts = d.split('-');
-              const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-              return `${months[parseInt(parts[1],10)-1]} ${parts[0]}`;
-            }
-          }
-        },
-        y: { grid: { color: COLORS.border } }
-      },
-      plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
-    }
-  });
-}
-
-function setupTeamSelector(teamProfiles, eloHistoryAll) {
-  const select = document.getElementById('teamSelect');
-  const teamsByRank = Object.entries(teamProfiles).sort((a, b) => a[1].rank - b[1].rank);
-
-  select.innerHTML = teamsByRank
-    .map(([team, p]) => `<option value="${team}">#${p.rank} ${team}</option>`)
-    .join('');
-
-  select.addEventListener('change', () => renderTeamExplorer(teamProfiles, eloHistoryAll, select.value));
-  renderTeamExplorer(teamProfiles, eloHistoryAll, teamsByRank[0][0]);
-}
-
-async function init() {
-  try {
-    const [results, features, eloHistory, summary, teamProfiles, eloHistoryAll] = await Promise.all([
-      loadJSON('data/results.json'),
-      loadJSON('data/feature_importance.json'),
-      loadJSON('data/elo_history.json'),
-      loadJSON('data/summary.json'),
-      loadJSON('data/team_profiles.json'),
-      loadJSON('data/elo_history_all.json'),
-    ]);
-
-    document.getElementById('badge-matches').textContent = `${summary.num_matches.toLocaleString()} matches`;
-    document.getElementById('badge-range').textContent = `${summary.date_range[0]} → ${summary.date_range[1]}`;
-    document.getElementById('badge-teams').textContent = `${summary.num_teams} teams`;
-
-    renderResultsTable(results);
-    renderResultsChart(results);
-    renderFeatureChart(features);
-    renderEloChart(eloHistory);
-    setupTeamSelector(teamProfiles, eloHistoryAll);
-  } catch (err) {
-    document.querySelector('.wrap').insertAdjacentHTML('afterbegin',
-      `<div class="panel" style="border-color:#e05a7a;margin-bottom:24px;">
-         <strong>Couldn't load data.</strong> If you're viewing this locally, run it through a
-         local server (e.g. <code>python -m http.server</code> from the docs/ folder) rather than
-         opening index.html directly — browsers block JSON fetches from file:// URLs.
-       </div>`);
-    console.error(err);
-  }
-}
-
-init();
+  loadJSON('data/summary.json').then(renderSummaryBadges).catch(() => {});
 </script>
 </body>
 </html>

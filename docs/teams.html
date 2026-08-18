@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teams — PL Predictor</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="inner">
+    <a class="brand" href="index.html">⚽ PL Predictor</a>
+    <div class="links">
+      <a href="index.html">About</a>
+      <a href="results.html">Results</a>
+      <a href="teams.html" class="active">Teams</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="page-header">
+    <h1>Teams</h1>
+    <p class="subtitle">Elo rating trajectories across the whole dataset. Pick a team below to see their current rank, recent form, and rating history highlighted against the league average.</p>
+  </header>
+
+  <section>
+    <h2><span class="step">01</span> League overview</h2>
+    <p class="lede">Top 8 teams by final Elo rating, tracked match by match.</p>
+    <div class="panel">
+      <div class="chart-box tall"><canvas id="eloChart"></canvas></div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="step">02</span> Team explorer</h2>
+    <p class="lede">Select any team to see their profile and rating trajectory.</p>
+    <div class="panel">
+      <select id="teamSelect"></select>
+
+      <div class="team-header">
+        <div class="team-badge" id="team-badge">—</div>
+        <div class="team-name" id="team-name">—</div>
+      </div>
+
+      <div class="grid-2">
+        <div>
+          <div class="team-stats">
+            <div class="stat-card"><div class="label">Elo Rank</div><div class="value" id="stat-rank">—</div></div>
+            <div class="stat-card"><div class="label">Elo Rating</div><div class="value" id="stat-elo">—</div></div>
+            <div class="stat-card"><div class="label">Matches</div><div class="value" id="stat-matches">—</div></div>
+          </div>
+          <div class="form-strip" id="form-strip"></div>
+          <div class="recent-matches" id="recent-matches"></div>
+        </div>
+        <div class="chart-box tall"><canvas id="teamEloChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  Built with Python, pandas, and scikit-learn. Data from
+  <a href="https://www.football-data.co.uk/englandm.php" target="_blank">football-data.co.uk</a>.
+</footer>
+
+<script src="app.js"></script>
+<script>
+async function init() {
+  try {
+    const [eloHistory, teamProfiles, eloHistoryAll] = await Promise.all([
+      loadJSON('data/elo_history.json'),
+      loadJSON('data/team_profiles.json'),
+      loadJSON('data/elo_history_all.json'),
+    ]);
+    renderEloChart(eloHistory);
+    setupTeamSelector(teamProfiles, eloHistoryAll);
+  } catch (err) {
+    showLoadError('.wrap');
+    console.error(err);
+  }
+}
+init();
+</script>
+</body>
+</html>
