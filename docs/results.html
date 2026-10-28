@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Results — PL Predictor</title>
+<title>Model Results & Benchmarks — PL Predictor</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,10 @@
 
 <nav class="topnav">
   <div class="inner">
-    <a class="brand" href="index.html">⚽ PL Predictor</a>
+    <a class="brand" href="index.html">
+      <span>⚽ PL Predictor</span>
+      <span class="brand-badge">v2.4</span>
+    </a>
     <div class="links">
       <a href="index.html">About</a>
       <a href="results.html" class="active">Results</a>
@@ -23,30 +26,34 @@
 <div class="wrap">
 
   <header class="page-header">
-    <h1>Model Results</h1>
+    <div class="header-tag">Evaluation Suite</div>
+    <h1>Performance & Validation</h1>
     <p class="subtitle">
-      Four modeling approaches, evaluated on a chronological (non-random) held-out
-      test set — the most recent 20% of matches by date — and benchmarked against
-      real bookmaker odds.
+      Four distinct architectures benchmarked against actual market odds across held-out chronological fixtures.
     </p>
   </header>
 
   <section>
-    <h2><span class="step">01</span> Model comparison</h2>
-    <p class="lede">Accuracy and log loss on held-out matches.</p>
+    <h2><span class="step">01</span> Benchmark Comparison</h2>
+    <p class="lede">Held-out accuracy and multi-class log loss (lower is better).</p>
+    
     <div class="grid-2">
       <div class="panel">
-        <div id="results-table"><p class="loading">Loading results…</p></div>
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px; color: var(--text-muted);">Model Leaderboard</h3>
+        <div id="results-table" class="table-responsive">
+          <p class="loading">Loading performance data…</p>
+        </div>
       </div>
       <div class="panel">
+        <h3 style="font-size: 1.05rem; margin-bottom: 16px; color: var(--text-muted);">Accuracy vs Loss Matrix</h3>
         <div class="chart-box"><canvas id="resultsChart"></canvas></div>
       </div>
     </div>
   </section>
 
   <section>
-    <h2><span class="step">02</span> What the model actually looks at</h2>
-    <p class="lede">Random Forest feature importances — how much each input contributed to its predictions.</p>
+    <h2><span class="step">02</span> Predictive Drivers</h2>
+    <p class="lede">Gini feature importance ranking extracted from the Random Forest model.</p>
     <div class="panel">
       <div class="chart-box tall"><canvas id="featureChart"></canvas></div>
     </div>
@@ -55,8 +62,8 @@
 </div>
 
 <footer>
-  Built with Python, pandas, and scikit-learn. Data from
-  <a href="https://www.football-data.co.uk/englandm.php" target="_blank">football-data.co.uk</a>.
+  <div>Built with Python, pandas, and scikit-learn.</div>
+  <div>Data from <a href="https://www.football-data.co.uk/englandm.php" target="_blank">football-data.co.uk</a></div>
 </footer>
 
 <script src="app.js"></script>
